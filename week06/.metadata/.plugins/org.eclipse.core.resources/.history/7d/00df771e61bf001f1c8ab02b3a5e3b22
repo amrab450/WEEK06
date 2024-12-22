@@ -1,0 +1,42 @@
+package week06Project;
+
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Deck {
+
+	// List of cards
+    private List<Card> cards;
+
+    // Constructor: populate deck with 52 cards
+    public Deck() {
+        cards = new ArrayList<>();
+        for (int suit = 0; suit < 4; suit++) {
+            for (int value = 2; value <= 14; value++) {
+                String name = getCardName(value, suit);
+                Card card = new Card(value, name);
+                cards.add(card);
+            }
+        }
+    }
+
+    // Get card name based on value and suit
+    private String getCardName(int value, int suit) {
+        String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+        String[] values = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
+        return values[value - 2] + " of " + suits[suit];
+    }
+
+    // Shuffle deck
+    public void shuffle() {
+        Collections.shuffle(cards);
+    }
+
+    // Draw top card
+    public Card draw() {
+        return cards.remove(0);
+    }
+}	
+
